@@ -3,7 +3,7 @@
   <name>pcd2pgm</name>
   <version>0.0.1</version>
   <description>pcd2pgm</description>
-  <maintainer email="kazulab10969@outlook.jp">Your Name</maintainer>
+  <maintainer email="kazulab10969@outlook.jp">kazuma yagi</maintainer>
   <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
