@@ -45,7 +45,7 @@ ros2 launch pcd2pgm pcd2pgm.launch.py
 
 ## 3. Parameter Description
 
-You can configure the node's parameters by modifying the `pcd2pgm_ros2/pcd.yaml` file.
+You can configure the node's parameters by modifying the `pcd2pgm/pcd2pgm.yaml` file.
 
   ```yaml
   pcd2pgm_node:
