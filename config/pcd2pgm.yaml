@@ -1,0 +1,11 @@
+pcd2pgm_node:
+  ros__parameters:
+    resolution: 0.1
+    min_points_in_pix: 0
+    max_points_in_pix: 1
+    min_height: 0.5
+    max_height: 100.0
+    input_pcd: "/home/kazuma/kuams_ws/src/map_editer/map/test0312.pcd"
+    dest_directory: "/home/kazuma/dev_ws/src/pcd2pgm/map"
+    output_pgm_name: "test"
+    
