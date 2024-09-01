@@ -9,7 +9,6 @@
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
 #include <pcl/point_cloud.h>
-#include <pcl/common/transforms.h>
 
 class Pcd2Pgm : public rclcpp::Node
 {
@@ -43,7 +42,9 @@ public:
       return;
     }
 
-    // Determine map size based on the point cloud
+    RCLCPP_INFO(this->get_logger(), "Initial point cloud size: %lu", cloud_xyz->points.size());
+
+    // Determine map size and origin
     double x_min = std::numeric_limits<double>::max();
     double x_max = std::numeric_limits<double>::lowest();
     double y_min = std::numeric_limits<double>::max();
@@ -67,6 +68,9 @@ public:
     // Create 2D map
     cv::Mat map = generate(*cloud_xyz, x_min, y_min);
 
+    // Flip the map to correct the orientation
+    cv::flip(map, map, 0);  // 0 means flipping around the x-axis (i.e., vertical flip)
+
     if (!boost::filesystem::exists(dest_directory))
     {
       boost::filesystem::create_directories(dest_directory);
@@ -76,12 +80,12 @@ public:
     std::string pgm_file_path = dest_directory + "/" + output_pgm_name + ".pgm";
     cv::imwrite(pgm_file_path, map);
 
-    // Save the YAML file
+    // Save the YAML file with corrected origin
     std::string yaml_file_path = dest_directory + "/" + output_pgm_name + ".yaml";
     std::ofstream ofs(yaml_file_path);
     ofs << "image: " << output_pgm_name << ".pgm" << std::endl;
     ofs << "resolution: " << resolution << std::endl;
-    ofs << "origin: [" << x_min << ", " << y_min << ", 0.0]" << std::endl;
+    ofs << "origin: [" << x_min << ", " << (y_max - map_height * resolution) << ", 0.0]" << std::endl;
     ofs << "occupied_thresh: 0.5" << std::endl;
     ofs << "free_thresh: 0.2" << std::endl;
     ofs << "negate: 0" << std::endl;
@@ -132,15 +136,14 @@ private:
 
     return map;
   }
-
-  double x_min, x_max, y_min, y_max;
 };
 
 int main(int argc, char** argv)
 {
   rclcpp::init(argc, argv);
   auto node = std::make_shared<Pcd2Pgm>();
-  rclcpp::spin_some(node);  // ノード内での処理を実行
-  rclcpp::shutdown();  // 処理が完了したらシャットダウン
+  rclcpp::spin_some(node);
+  rclcpp::shutdown();
   return 0;
 }
+
