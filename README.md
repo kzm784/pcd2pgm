@@ -5,7 +5,7 @@ A tool based on ROS2 and the PCL library to convert `.pcd` point cloud files int
 
 |pcd|pgm|
 |:-:|:-:|
-|![pcd](.docs/pcd.png)|![pgm](.docs/pgm.png)|
+|![pcd](.docs/pcd.png)|![pgm](.docs/pgm.pgm)|
 
 ## 1. Features
 
