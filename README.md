@@ -3,9 +3,9 @@
 
 A tool based on ROS2 and the PCL library to convert `.pcd` point cloud files into `.pgm` grid maps for use in Navigation.
 
-|pcd|pgm|
+| pcd | pgm |
 |:-:|:-:|
-|![pcd](.docs/pcd.png)|![pgm](.docs/pgm.pgm)|
+| <img src=".docs/pcd.png" alt="pcd" width="300"/> | <img src=".docs/pgm.png" alt="pgm" width="300"/> |
 
 ## 1. Features
 
