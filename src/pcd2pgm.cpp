@@ -131,7 +131,7 @@ private:
     }
 
     map -= min_points_in_pix;
-    map = cv::max(map, 0);  // 画素値が負にならないようにする
+    map = cv::max(map, 0);
     map.convertTo(map, CV_8UC1, -255.0 / (max_points_in_pix - min_points_in_pix), 255);
 
     return map;
