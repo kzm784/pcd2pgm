@@ -55,7 +55,7 @@ You can configure the node's parameters by modifying the `pcd2pgm/pcd2pgm.yaml` 
       max_points_in_pix: 1
       min_height: 0.5
       max_height: 100.0
-      input_pcd: "/home/kazuma/kuams_ws/src/map_editer/map/test0312.pcd"
-      dest_directory: "/home/kazuma/dev_ws/src/pcd2pgm/map"
+      input_pcd: "/home/user/ros2_ws/src/pcd2pgm/map/test0312.pcd"
+      dest_directory: "/home/user/ros2_ws/src/pcd2pgm/map"
       output_pgm_name: "test"
   ```
